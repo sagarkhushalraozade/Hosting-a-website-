@@ -5,13 +5,13 @@
     <style>
         /* Center-align the container and make it 50% of the window size */
         .slider-container {
-            width: 50%;
+            width: 80%;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            height: 50vh;
         }
 
         /* Style the custom slider container */
@@ -27,10 +27,11 @@
 
         /* Style the custom slider thumb */
         .custom-slider-thumb {
-            width: 20px;
-            height: 20px;
+            width: 30px;
+            height: 30px;
             background-color: white; /* Fixed color for the slider thumb */
             border-radius: 50%; /* Make the thumb round */
+			border: 2px solid black; /* Add a black border to the slider thumb */
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -53,6 +54,30 @@
             background-color: #fff;
             color: #333; /* Set the text color to black by default */
         }
+		
+		/* Style for the text labels above the slider */
+		.slider-label {
+			position: absolute;
+			top: -60px; /* Adjust the top value as needed to position the labels */
+			font-size: 24px; /* Adjust the font size as needed */
+			text-align: center;
+			width: 250px; /* Adjust the width as needed to match the label text length */
+			left: calc(0% - 30px); /* Adjust the left value to align with the corresponding slider values */
+			user-select: none; /* Disable text selection on the labels */
+		}
+
+		/* Position labels for specific slider values */
+		.slider-label:nth-child(1) {
+			left: calc(0% - 60px); /* Position for -3 */
+		}
+
+		.slider-label:nth-child(2) {
+			left: calc(50% - 60px); /* Position for 0 */
+		}
+
+		.slider-label:nth-child(3) {
+			left: calc(100% - 60px); /* Position for 3 */
+		}
 
         /* Style for tick values */
         .tick-values {
@@ -73,7 +98,7 @@
 
         /* Style for the buttons */
         .button-container {
-            margin-top: 20px;
+            margin-top: 10px;
             display: flex;
             justify-content: center;
         }
@@ -98,10 +123,14 @@
             padding: 5px;
             margin-top: 10px;
         }
+		
+		h1 {
+			text-align: center;
+		}
     </style>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <h1>Scent intensity and quality database</h1>
 
     <!-- Add a clock to display date and time -->
     <div class="clock" id="clock"></div>
@@ -109,14 +138,20 @@
     <!-- Add a container for the custom slider and its value display -->
     <div class="slider-container">
         <div class="custom-slider-container" id="sliderContainer">
+			<!-- Add text labels for specific values above the slider -->
+			<span class="slider-label">Extremely unpleasant</span>
+			<span class="slider-label">Neither pleasant nor unpleasant</span>
+			<span class="slider-label">Extremely pleasant</span>
             <div class="custom-slider-thumb" id="sliderThumb"></div>
         </div>
         <div class="slider-value-container">
-            <span>Selected Value:</span>
+            <span>Hedonic tone:</span>
             <div class="slider-value" id="sliderValue">0</div>
         </div>
         <div class="tick-values">
-            <!-- Add tick values from -3 to 3 in steps of 0.5 -->
+            <!-- Add tick values from -4 to 4 in steps of 0.5 -->
+			<span>-4</span>
+            <span>-3.5</span>
             <span>-3</span>
             <span>-2.5</span>
             <span>-2</span>
@@ -130,6 +165,8 @@
             <span>2</span>
             <span>2.5</span>
             <span>3</span>
+			<span>3.5</span>
+            <span>4</span>
         </div>
 
         <!-- Add an input box for file name -->
@@ -212,13 +249,6 @@
             // Update the displayed value and its color
             sliderValue.innerText = value.toFixed(1);
             updateColor(value);
-
-            // If recording is active, append the data to the CSV string
-            if (isRecording) {
-                const now = new Date();
-                const formattedTime = now.toLocaleString(); // Format time as a human-readable string
-                csvData += `${formattedTime},${value}\n`;
-            }
         }
 
         // Function to update the color based on the slider's position
