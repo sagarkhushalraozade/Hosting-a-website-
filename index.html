@@ -11,7 +11,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 50vh;
+            height: 40vh;
         }
 
         /* Style the custom slider container */
@@ -43,6 +43,12 @@
             display: flex;
             align-items: center;
         }
+		
+		/* Style for the text label "Odour intensity" */
+		.slider-label-intensity {
+			font-size: 24px; /* Set the desired font size */
+			/* Add any other styles you want for this label */
+		}
 
         .slider-value {
             margin-left: 10px;
@@ -56,45 +62,69 @@
             user-select: none; /* Disable text selection on the labels */
         }
 
-        /* Style for the text labels above the sliders */
-        .slider-label {
+        /* Style for the text labels above the slider 1 */
+        .slider-label-1 {
             position: absolute;
             top: -60px; /* Adjust the top value as needed to position the labels */
             font-size: 24px; /* Adjust the font size as needed */
             text-align: center;
-            width: 250px; /* Adjust the width as needed to match the label text length */
+            width: auto; /* Adjust the width as needed to match the label text length */
             left: calc(0% - 30px); /* Adjust the left value to align with the corresponding slider values */
             user-select: none; /* Disable text selection on the labels */
         }
+		.slider-label-1:nth-child(1) {
+			left: calc(0% - 60px); /* Position for -4 */
+		}
 
-        /* Position labels for the first slider */
-        .slider-label:nth-child(1) {
-            left: calc(0% - 60px); /* Position for -4 */
-        }
+		.slider-label-1:nth-child(2) {
+			left: calc(50% - 60px); /* Position for 0 */
+		}
 
-        .slider-label:nth-child(2) {
-            left: calc(50% - 60px); /* Position for 0 */
+		.slider-label-1:nth-child(3) {
+			left: calc(100% - 60px); /* Position for 4 */
+		}
+		
+		
+		/* Style for the text labels above the slider 2 */
+        .slider-label-2 {
+            position: absolute;
+            top: -60px; /* Adjust the top value as needed to position the labels */
+            font-size: 24px; /* Adjust the font size as needed */
+            text-align: center;
+            width: auto; /* Adjust the width as needed to match the label text length */
+            left: calc(0% - 30px); /* Adjust the left value to align with the corresponding slider values */
+            user-select: none; /* Disable text selection on the labels */
         }
+	    .slider-label-2:nth-child(1) {
+			left: calc(0% + 10px); /* Position for "Not perceptible" */
+		}
 
-        .slider-label:nth-child(3) {
-            left: calc(100% - 60px); /* Position for 4 */
-        }
+		.slider-label-2:nth-child(2) {
+			left: calc(16% + 10px); /* Position for "Very weak" */
+		}
 
-        /* Position labels for the second slider */
-        .slider-label:nth-child(4) {
-            top: 60px; /* Adjust the top value to position below the first slider */
-            left: calc(0% - 60px); /* Position for -4 */
-        }
+		.slider-label-2:nth-child(3) {
+			left: calc(32% + 10px); /* Position for "Weak" */
+		}
 
-        .slider-label:nth-child(5) {
-            top: 60px; /* Adjust the top value to position below the first slider */
-            left: calc(50% - 60px); /* Position for 0 */
-        }
+		.slider-label-2:nth-child(4) {
+			left: calc(50% + 10px); /* Position for "Distinct" */
+		}
 
-        .slider-label:nth-child(6) {
-            top: 60px; /* Adjust the top value to position below the first slider */
-            left: calc(100% - 60px); /* Position for 4 */
-        }
+		.slider-label-2:nth-child(5) {
+			left: calc(66% + 10px); /* Position for "Strong" */
+		}
+
+		.slider-label-2:nth-child(6) {
+			left: calc(82% + 10px); /* Position for "Very strong" */
+		}
+
+		.slider-label-2:nth-child(7) {
+			left: calc(100% + 10px); /* Position for "Extremely strong" */
+		}
+
+
+
 
         /* Style for tick values */
         .tick-values {
@@ -134,35 +164,40 @@
             color: white; /* Set text color to white for better visibility */
         }
 
-        /* Style for the file name input box */
-        .file-name-input {
-            font-size: 16px;
-            padding: 5px;
-            margin-top: 10px;
-        }
+		/* Style for the header container */
+		.header-container {
+			text-align: center; /* Center-align the contents */
+			margin-top: 20px; /* Add margin space at the top */
+		}
 
-        h1 {
-            text-align: center;
-        }
+		/* Style for the file name input box */
+		.file-name-input {
+			font-size: 16px;
+			padding: 5px;
+			margin-top: 10px;
+		}
     </style>
 </head>
 <body>
-    <h1>Scent Intensity and Quality Database</h1>
+    <div class="header-container">
+		<h1>Scent Intensity and Quality Database</h1>
+		<input type="text" class="file-name-input" placeholder="Enter File Name" id="fileNameInput">
+	</div>
 
     <!-- Add a clock to display date and time -->
     <div class="clock" id="clock"></div>
 
     <!-- Add a container for the first custom slider and its value display -->
     <div class="slider-container">
-        <div class="custom-slider-container" id="sliderContainer1">
-            <!-- Add text labels for specific values above the first slider -->
-            <span class="slider-label">Extremely unpleasant</span>
-            <span class="slider-label">Neither pleasant nor unpleasant</span>
-            <span class="slider-label">Extremely pleasant</span>
-            <div class="custom-slider-thumb" id="sliderThumb1"></div>
-        </div>
+		<div class="custom-slider-container" id="sliderContainer1">
+			<!-- Add text labels for specific values above the first slider -->
+			<span class="slider-label slider-label-1">Extremely unpleasant</span>
+			<span class="slider-label slider-label-1">Neither pleasant nor unpleasant</span>
+			<span class="slider-label slider-label-1">Extremely pleasant</span>
+			<div class="custom-slider-thumb" id="sliderThumb1"></div>
+		</div>
         <div class="slider-value-container">
-            <span>Hedonic Tone:</span>
+            <span class="slider-label slider-label-intensity">Hedonic Tone:</span>
             <div class="slider-value" id="sliderValue1">0</div>
         </div>
         <div class="tick-values">
@@ -187,43 +222,40 @@
         </div>
     </div>
 
-    <!-- Add a container for the second custom slider and its value display -->
-    <div class="slider-container">
-        <div class="custom-slider-container" id="sliderContainer2">
-            <!-- Add text labels for specific values above the second slider -->
-            <span class="slider-label">Very Humid</span>
-            <span class="slider-label">OK</span>
-            <span class="slider-label">Very Dry</span>
-            <div class="custom-slider-thumb" id="sliderThumb2"></div>
-        </div>
-        <div class="slider-value-container">
-            <span>Humidity:</span>
-            <div class="slider-value" id="sliderValue2">0</div>
-        </div>
-        <div class="tick-values">
-            <!-- Add tick values from -4 to 4 in steps of 0.5 for the second slider -->
-            <span>-4</span>
-            <span>-3.5</span>
-            <span>-3</span>
-            <span>-2.5</span>
-            <span>-2</span>
-            <span>-1.5</span>
-            <span>-1</span>
-            <span>-0.5</span>
-            <span>0</span>
-            <span>0.5</span>
-            <span>1</span>
-            <span>1.5</span>
-            <span>2</span>
-            <span>2.5</span>
-            <span>3</span>
-            <span>3.5</span>
-            <span>4</span>
-        </div>
-    </div>
-
-    <!-- Add an input box for file name -->
-    <input type="text" class="file-name-input" placeholder="Enter File Name" id="fileNameInput">
+	<!-- Add a container for the second custom slider and its value display -->
+	<div class="slider-container">
+		<div class="custom-slider-container" id="sliderContainer2">
+			<!-- Add text labels for specific values above the second slider -->
+			<span class="slider-label slider-label-2">Not perceptible</span>
+			<span class="slider-label slider-label-2">Very weak</span>
+			<span class="slider-label slider-label-2">Weak</span>
+			<span class="slider-label slider-label-2">Distinct</span>
+			<span class="slider-label slider-label-2">Strong</span>
+			<span class="slider-label slider-label-2">Very strong</span>
+			<span class="slider-label slider-label-2">Extremely strong</span>
+			<div class="custom-slider-thumb" id="sliderThumb2"></div>
+		</div>
+		<div class="slider-value-container">
+			<span class="slider-label slider-label-intensity">Odour intensity:</span>
+			<div class="slider-value" id="sliderValue2">0</div>
+		</div>
+		<div class="tick-values">
+			<!-- Add tick values from 0 to 6 in steps of 0.5 for the second slider -->
+			<span>0</span>
+			<span>0.5</span>
+			<span>1</span>
+			<span>1.5</span>
+			<span>2</span>
+			<span>2.5</span>
+			<span>3</span>
+			<span>3.5</span>
+			<span>4</span>
+			<span>4.5</span>
+			<span>5</span>
+			<span>5.5</span>
+			<span>6</span>
+		</div>
+	</div>
 
     <!-- Add buttons to start and stop updating the CSV file -->
     <div class="button-container">
@@ -257,7 +289,7 @@
 
         document.addEventListener("mousemove", (event) => {
             if (isDragging1) {
-                updateSlider(event, sliderContainer1, sliderThumb1, sliderValue1, step1, 1);
+                updateSlider1(event, sliderContainer1, sliderThumb1, sliderValue1, step1, 1);
             }
         });
 
@@ -266,7 +298,7 @@
         });
 
         // Function to update the first slider's position, displayed value, and color
-        function updateSlider(event, container, thumb, valueDisplay, step, sliderNumber) {
+        function updateSlider1(event, container, thumb, valueDisplay, step, sliderNumber) {
             const containerWidth = container.clientWidth;
             const clickX = event.clientX - container.getBoundingClientRect().left;
             const percent = Math.min(1, Math.max(0, clickX / containerWidth));
@@ -280,15 +312,30 @@
 
             // Update the displayed value and its color
             valueDisplay.innerText = value.toFixed(1);
-            updateColor(value, valueDisplay);
+            updateColor1(value, valueDisplay);
 
         }
 
         // Function to update the color based on the slider's position for the first slider
-        function updateColor(value, valueDisplay) {
+        function updateColor1(value, valueDisplay) {
             // Map the value to a color gradient from blue (cold) to red (hot)
             const min = -4;
             const max = 4;
+            const percent = (value - min) / (max - min);
+            const red = Math.floor(255 * percent);
+            const blue = Math.floor(255 * (1 - percent));
+            const color = `rgb(${red}, 0, ${blue})`;
+
+            // Apply the color to the value display
+            valueDisplay.style.backgroundColor = color;
+            valueDisplay.style.color = "white"; // Set text color to white for better visibility on colored background
+        }
+		
+		// Function to update the color based on the slider's position for the first slider
+        function updateColor2(value, valueDisplay) {
+            // Map the value to a color gradient from blue (cold) to red (hot)
+            const min = 0;
+            const max = 6;
             const percent = (value - min) / (max - min);
             const red = Math.floor(255 * percent);
             const blue = Math.floor(255 * (1 - percent));
@@ -324,7 +371,7 @@
 
         document.addEventListener("mousemove", (event) => {
             if (isDragging2) {
-                updateSlider(event, sliderContainer2, sliderThumb2, sliderValue2, step2, 2);
+                updateSlider2(event, sliderContainer2, sliderThumb2, sliderValue2, step2, 2);
             }
         });
 
@@ -333,21 +380,21 @@
         });
 
         // Function to update the second slider's position, displayed value, and color
-        function updateSlider(event, container, thumb, valueDisplay, step, sliderNumber) {
+        function updateSlider2(event, container, thumb, valueDisplay, step, sliderNumber) {
             const containerWidth = container.clientWidth;
             const clickX = event.clientX - container.getBoundingClientRect().left;
             const percent = Math.min(1, Math.max(0, clickX / containerWidth));
-            let value = -4 + percent * 8; // Map to the range -4 to 4
+            let value = 0 + percent * 6; // Map to the range 0 to 6
 
             // Snap the value to the nearest step
             value = Math.round(value / step) * step;
 
             // Update the position of the slider thumb
-            thumb.style.left = `${((value + 4) / 8) * 100}%`;
+            thumb.style.left = `${((value + 0) / 6) * 100}%`;
 
             // Update the displayed value and its color
             valueDisplay.innerText = value.toFixed(1);
-            updateColor(value, valueDisplay);
+            updateColor2(value, valueDisplay);
 
         }
 
