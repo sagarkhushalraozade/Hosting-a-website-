@@ -59,7 +59,7 @@
             border-radius: 5px;
             background-color: #fff;
             color: #333; /* Set the text color to black by default */
-            /* user-select: none;*/ /* Disable text selection on the labels */
+            user-select: none; /* Disable text selection on the labels */
         }
 
         /* Style for the text labels above the slider 1 */
@@ -70,7 +70,7 @@
             text-align: center;
             width: auto; /* Adjust the width as needed to match the label text length */
             left: calc(0% - 30px); /* Adjust the left value to align with the corresponding slider values */
-            /* user-select: none; */ /* Disable text selection on the labels */
+            user-select: none; /* Disable text selection on the labels */
         }
 		.slider-label-1:nth-child(1) {
 			left: calc(0% - 60px); /* Position for -4 */
@@ -93,7 +93,7 @@
             text-align: center;
             width: auto; /* Adjust the width as needed to match the label text length */
             left: calc(0% - 30px); /* Adjust the left value to align with the corresponding slider values */
-            /* user-select: none; */ /* Disable text selection on the labels */
+            user-select: none;  /* Disable text selection on the labels */
         }
 	    .slider-label-2:nth-child(1) {
 			left: calc(0% + 10px); /* Position for "Not perceptible" */
@@ -191,9 +191,9 @@
     <div class="slider-container">
 		<div class="custom-slider-container" id="sliderContainer1">
 			<!-- Add text labels for specific values above the first slider -->
-<!-- 			<span class="slider-label slider-label-1">Extremely unpleasant</span>
+			<span class="slider-label slider-label-1">Extremely unpleasant</span>
 			<span class="slider-label slider-label-1">Neither pleasant nor unpleasant</span>
-			<span class="slider-label slider-label-1">Extremely pleasant</span> -->
+			<span class="slider-label slider-label-1">Extremely pleasant</span>
 			<div class="custom-slider-thumb" id="sliderThumb1"></div>
 		</div>
         <div class="slider-value-container">
@@ -296,6 +296,21 @@
         document.addEventListener("mouseup", () => {
             isDragging1 = false;
         });
+		
+		// Add touch event listeners for mobile devices for the first slider
+        sliderThumb1.addEventListener("touchstart", () => {
+            isDragging1 = true;
+        });
+
+        document.addEventListener("touchmove", (event) => {
+            if (isDragging1) {
+                updateSlider1(event.touches[0], sliderContainer1, sliderThumb1, sliderValue1, step1, 1);
+            }
+        });
+
+        document.addEventListener("touchend", () => {
+            isDragging1 = false;
+        });
 
         // Function to update the first slider's position, displayed value, and color
         function updateSlider1(event, container, thumb, valueDisplay, step, sliderNumber) {
@@ -376,6 +391,21 @@
         });
 
         document.addEventListener("mouseup", () => {
+            isDragging2 = false;
+        });
+		
+		// Add touch event listeners for mobile devices for the second slider
+        sliderThumb2.addEventListener("touchstart", () => {
+            isDragging2 = true;
+        });
+
+        document.addEventListener("touchmove", (event) => {
+            if (isDragging2) {
+                updateSlider2(event.touches[0], sliderContainer2, sliderThumb2, sliderValue2, step2, 2);
+            }
+        });
+
+        document.addEventListener("touchend", () => {
             isDragging2 = false;
         });
 
